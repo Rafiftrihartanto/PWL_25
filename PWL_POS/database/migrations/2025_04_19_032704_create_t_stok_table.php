@@ -11,10 +11,11 @@ return new class extends Migration
         Schema::create('t_stok', function (Blueprint $table) {
             $table->id('stok_id');
             $table->foreignId('barang_id')->constrained('m_barang')->onDelete('cascade');
-            $table->integer('jumlah');
-            $table->date('tanggal_masuk');
+            $table->integer('stok_jumlah');
+            $table->date('stok_tanggal');
             $table->timestamps();
         });
+        
     }
 
     public function down(): void

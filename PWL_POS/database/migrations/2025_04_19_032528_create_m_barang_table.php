@@ -8,17 +8,17 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('m_barang', function (Blueprint $table) {
-            $table->id('barang_id'); // Primary Key
-            $table->unsignedBigInteger('kategori_id'); // Foreign Key ke m_kategori
+            $table->id('barang_id');
+            $table->unsignedBigInteger('kategori_id')->index();
             $table->string('barang_kode', 20)->unique();
             $table->string('barang_nama', 100);
-            $table->integer('harga');
-            $table->integer('stok')->default(0);
+            $table->integer('harga_beli');
+            $table->integer('harga_jual');
             $table->timestamps();
 
-            // Foreign Key
-            $table->foreign('kategori_id')->references('kategori_id')->on('m_kategori')->onDelete('cascade');
+            $table->foreign('kategori_id')->references('kategori_id')->on('m_kategori');
         });
+        
     }
 
     public function down(): void

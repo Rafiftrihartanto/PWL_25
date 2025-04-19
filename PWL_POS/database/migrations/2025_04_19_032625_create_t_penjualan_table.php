@@ -8,15 +8,16 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('t_penjualan', function (Blueprint $table) {
-            $table->id('penjualan_id'); // Primary Key
-            $table->unsignedBigInteger('user_id'); // Foreign Key ke m_user
-            $table->date('tanggal_penjualan');
-            $table->integer('total_harga');
+            $table->id('penjualan_id');
+            $table->unsignedBigInteger('user_id')->index(); //indexing untuk foreign key
+            $table->string('pembeli', 50);
+            $table->string('penjualan_kode', 20)->unique();
+            $table->date('penjualan_tanggal');
             $table->timestamps();
 
-            // Foreign Key
-            $table->foreign('user_id')->references('user_id')->on('m_user')->onDelete('cascade');
+            $table->foreign('user_id')->references('user_id')->on('m_user');
         });
+        
     }
 
     public function down(): void

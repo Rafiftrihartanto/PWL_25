@@ -10,14 +10,16 @@ return new class extends Migration
     {
         Schema::create('t_penjualan_detail', function (Blueprint $table) {
             $table->id('detail_id');
-            $table->unsignedBigInteger('penjualan_id');
-            $table->foreign('penjualan_id')->references('penjualan_id')->on('t_penjualan')->onDelete('cascade');
-            $table->foreignId('barang_id')->constrained('m_barang')->onDelete('cascade');
+            $table->unsignedBigInteger('penjualan_id')->index(); //indexing untuk foreign key
+            $table->unsignedBigInteger('barang_id')->index(); //indexing untuk foreign key
             $table->integer('jumlah');
-            $table->decimal('harga_satuan', 12, 2);
-            $table->decimal('subtotal', 14, 2);
+            $table->decimal('harga');
             $table->timestamps();
+
+            $table->foreign('penjualan_id')->references('penjualan_id')->on('t_penjualan');
+            $table->foreign('barang_id')->references('barang_id')->on('m_barang');
         });
+        
     }
 
     public function down(): void
