@@ -5,7 +5,7 @@
     </head>
     <body>
         <h1>Data User</h1>
-       {{-- <table border="1" cellpadding="2" cellspacing="0">
+        <table border="1" cellpadding="2" cellspacing="0">
             <tr>
                 <td>ID</td>
                 <td>Username</td>
@@ -21,15 +21,15 @@
 
         </table>
 
-    </table> --}}
+    </table> 
         
-    <table border="1" cellpadding="5" cellspacing="0">
+    {{-- <table border="1" cellpadding="5" cellspacing="0">
         <tr>
             <th>Jumlah Pengguna </th>
         </tr>
         <tr>
             <td>{{ $count }}</td>
         </tr>
-    </table> 
+    </table> --}}
     </body>
 </html>
