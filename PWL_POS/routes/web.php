@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LevelController;
 use  App\Http\Controllers\KategoriController;
 use  App\Http\Controllers\UserController;
+use  App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,8 @@ use  App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+route::get('/', [WelcomeController::class, 'index']);
 
 Route::get('/', function () {
     return view('index');
@@ -32,6 +35,3 @@ Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
-
-
-file:///C:/laragon/www/PWL_25/PWL_POS/public/adminlte/index.html
