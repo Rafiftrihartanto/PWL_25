@@ -17,7 +17,7 @@ use  App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/level', [LevelController::class, 'index']);
@@ -28,3 +28,10 @@ Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan']);
 Route::get('/user/ubah/{id}', [UserController::class, 'ubah']);
 Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
 Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+
+file:///C:/laragon/www/PWL_25/PWL_POS/public/adminlte/index.html
