@@ -40,15 +40,16 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ url('/supplier') }}" class="nav-link {{ ($activeMenu == 'supplier')? 'active' : '' }} ">
-            <i class="nav-icon far fa-building"></i>
-            <p>Data Supplier</p>
-          </a>
-        </li>
-        <li class="nav-item">
           <a href="{{ url('/barang') }}" class="nav-link {{ ($activeMenu == 'barang')? 'active' : '' }} ">
             <i class="nav-icon far fa-list-alt"></i>
             <p>Data Barang</p>
+          </a>
+        </li>
+        <li class="nav-header">Data Supplier</li>
+        <li class="nav-item">
+          <a href="{{ url('/supplier') }}" class="nav-link {{ ($activeMenu == 'supplier')? 'active' : '' }} ">
+            <i class="nav-icon far fa-building"></i>
+            <p>Data Supplier</p>
           </a>
         </li>
         <li class="nav-header">Data Transaksi</li>
@@ -62,6 +63,12 @@
           <a href="{{ url('/barang') }}" class="nav-link {{ ($activeMenu == 'penjualan')? 'active' : '' }} ">
             <i class="nav-icon fas fa-cash-register"></i>
             <p>Transaksi Penjualan</p>
+          </a>
+        </li>
+        <li class="nav-item fixed-bottom mx-2">
+          <a href="{{ url('/user/profile') }}" class="nav-link {{ ($activeMenu == 'profile')? 'active' : '' }} ">
+            <i class="nav-icon fas fa-user-circle"></i>
+            <p> User Profile</p>
           </a>
         </li>
       </ul>
