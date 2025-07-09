@@ -270,6 +270,10 @@ class UserController extends Controller
     }
     public function export_pdf()
     {
+
+        set_time_limit(300); // 5 menit
+        ini_set('memory_limit', '256M'); // Atur sesuai kebutuhan
+        
         $user = UserModel::select('level_id', 'username', 'nama')
                                 ->orderBy('level_id')
                                 ->with('level')

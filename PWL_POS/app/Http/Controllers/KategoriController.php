@@ -243,17 +243,22 @@ class KategoriController extends Controller
     }
     public function export_pdf()
     {
-        $kategori = KategoriModel::select('kategori_kode', 'kategori_nama')
-                                ->orderBy('kategori_id')
-                                ->orderBy('kategori_kode')
-                                ->get();
-    
-        // use Barryvdh\DomPDF\Facade\Pdf;
-        $pdf = Pdf::loadView('kategori.export_pdf', ['kategori' => $kategori]);
-        $pdf->setPaper('a4', 'portrait'); // set ukuran kertas dan orientasi
-        $pdf->setOption("isRemoteEnabled", true); // set true jika ada gambar dari url
-        $pdf->render();
-    
-        return $pdf->stream('Data Kategori '.date('Y-m-d H:i:s').'.pdf');
+    // Tambahkan batas waktu eksekusi dan limit memori
+    set_time_limit(300); // 5 menit
+    ini_set('memory_limit', '256M'); // Atur sesuai kebutuhan
+
+    $kategori = KategoriModel::select('kategori_kode', 'kategori_nama')
+        ->orderBy('kategori_id')
+        ->orderBy('kategori_kode')
+        ->get();
+
+    // Gunakan facade PDF
+    $pdf = Pdf::loadView('kategori.export_pdf', ['kategori' => $kategori]);
+    $pdf->setPaper('a4', 'portrait'); // Ukuran & orientasi PDF
+    $pdf->setOption("isRemoteEnabled", true); // Aktifkan jika ada gambar dari URL
+    $pdf->render();
+
+    return $pdf->stream('Data Kategori ' . date('Y-m-d H:i:s') . '.pdf');
     }
+
 }

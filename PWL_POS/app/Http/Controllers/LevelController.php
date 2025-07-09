@@ -243,6 +243,10 @@ class LevelController extends Controller
     }
     public function export_pdf()
     {
+        set_time_limit(300); // 5 menit
+        ini_set('memory_limit', '256M'); // Atur sesuai kebutuhan
+
+
         $level = LevelModel::select('level_kode', 'level_nama')
                                 ->orderBy('level_id')
                                 ->orderBy('level_kode')

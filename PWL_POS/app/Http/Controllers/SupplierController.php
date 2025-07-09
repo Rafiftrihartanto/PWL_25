@@ -248,6 +248,10 @@ class SupplierController extends Controller
     }
     public function export_pdf()
     {
+        set_time_limit(300); // 5 menit
+        ini_set('memory_limit', '256M'); // Atur sesuai kebutuhan
+
+
         $supplier = SupplierModel::select('supplier_kode', 'supplier_nama', 'supplier_alamat')
                                 ->orderBy('supplier_id')
                                 ->orderBy('supplier_kode')

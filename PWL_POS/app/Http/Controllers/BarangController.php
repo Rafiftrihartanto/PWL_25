@@ -277,18 +277,22 @@ class BarangController extends Controller
     }
     public function export_pdf()
     {
-        $barang = BarangModel::select('kategori_id','barang_kode','barang_nama','harga_beli','harga_jual')
-            ->orderBy('kategori_id')
-            ->orderBy('barang_kode')
-            ->with('kategori')
-            ->get();
-    
-        // use Barryvdh\DomPDF\Facade\Pdf;
-        $pdf = Pdf::loadView('barang.export_pdf', ['barang' => $barang]);
-        $pdf->setPaper('a4', 'portrait'); // set ukuran kertas dan orientasi
-        $pdf->setOption("isRemoteEnabled", true); // set true jika ada gambar dari url
-        $pdf->render();
-    
-        return $pdf->stream('Data Barang '.date('Y-m-d H:i:s').'.pdf');
+    // Perpanjang waktu eksekusi dan limit memori
+    set_time_limit(300); // 5 menit
+    ini_set('memory_limit', '256M'); // atau sesuaikan misal '512M'
+
+    $barang = BarangModel::select('kategori_id','barang_kode','barang_nama','harga_beli','harga_jual')
+        ->orderBy('kategori_id')
+        ->orderBy('barang_kode')
+        ->with('kategori')
+        ->get();
+
+    // generate PDF menggunakan DomPDF (Barryvdh)
+    $pdf = Pdf::loadView('barang.export_pdf', ['barang' => $barang])
+        ->setPaper('a4', 'portrait') // Ukuran & orientasi
+        ->setOption('isRemoteEnabled', true); // Untuk support gambar dari URL
+
+        return $pdf->stream('Data Barang ' . now()->format('Y-m-d H-i-s') . '.pdf');
     }
+
 }
